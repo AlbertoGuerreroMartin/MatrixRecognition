@@ -20,19 +20,10 @@ public class OptionsActivity extends Activity {
 		
 		Intent intent = getIntent();
 		String matrixData = intent.getStringExtra("matrix_data");
-
 		
 		Matrix matrix = new Matrix();
 		//matrix.mapPoints();
 		
 		this.testTextView.setText(matrixData);
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.options, menu);
-		return true;
-	}
-
 }

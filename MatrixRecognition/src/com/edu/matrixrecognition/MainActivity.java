@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.NumberPicker.OnValueChangeListener;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
@@ -33,6 +32,7 @@ public class MainActivity extends Activity {
 	public static final int MAX_COLUMNS = 10;
 	
     public static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/MatrixRecognition/";
+	protected static final String PHOTO_TAKEN = "photo_taken";
 
     // You should have the trained data file in assets folder
     // You can get them at:
@@ -141,6 +141,19 @@ public class MainActivity extends Activity {
             Log.v(TAG, "User cancelled");
         }
     }
+    
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putBoolean(MainActivity.PHOTO_TAKEN, this.taken);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		Log.i(TAG, "onRestoreInstanceState()");
+		if (savedInstanceState.getBoolean(MainActivity.PHOTO_TAKEN)) {
+			onPhotoTaken();
+		}
+	}
     
     protected void onPhotoTaken() {
         this.taken = true;
